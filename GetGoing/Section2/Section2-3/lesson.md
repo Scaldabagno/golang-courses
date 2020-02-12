@@ -1,6 +1,6 @@
 # Section 2-3
 
-## Arrays
+## Strings
 
 * import strings module
 ```go
