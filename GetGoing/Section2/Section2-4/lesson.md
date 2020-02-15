@@ -1,29 +1,21 @@
-# Section 2-2
+# Section 2-4
 
-## Strings
+## Pointers
 
-* import strings module
+* Function with pointers to swap values
 ```go
-import (
-	"fmt"
-	"strings"
-	)
+func swap(m1, m2 *int) {
+	var temp int
+	temp = *m2
+	*m2 = *m1
+	*m1 = temp
+}
 ```
 
-* Same assignment as `int`
-
-* Reassignment with `=` instead of `:=`
+* Using this method
 ```go
-m1 := "my name"
-m1 := "shsh" //error
-m1 = "shsh"  //ok
-m2 := "name"
-```
-
-* strings methods
-```go
-strings.Contains(m1, m2) // m1 cointains m2
-strings.ReplaceAll(m1, "m", "NO")
-strings.Split(m1, " ")
-// else...
+m1, m2 := 2, 3
+fmt.Println(m1, m2) // 2, 3
+swap(&m1, &m2) // using their addresses, like C
+fmt.Println(m1, m2) // 3, 2
 ```

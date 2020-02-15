@@ -1,29 +1,29 @@
-# Section 2-2
+# Section 2-6
 
-## Strings
+## Interfaces: Pt. 2
 
-* import strings module
+* Declaring an interface
 ```go
-import (
-	"fmt"
-	"strings"
-	)
+type Car interface {
+	Drive()
+	Stop()
+}
 ```
 
-* Same assignment as `int`
-
-* Reassignment with `=` instead of `:=`
+* Defining some structs and creating a relation between them and an interface
 ```go
-m1 := "my name"
-m1 := "shsh" //error
-m1 = "shsh"  //ok
-m2 := "name"
-```
+type Lambo struct {
+	LamboModel string
+}
 
-* strings methods
-```go
-strings.Contains(m1, m2) // m1 cointains m2
-strings.ReplaceAll(m1, "m", "NO")
-strings.Split(m1, " ")
-// else...
+type Chevy struct {
+	ChevyModel string
+}
+
+// forces to declare all the methods of the interface to a specific structure
+func newModel(arg string) Car {
+	return &Lambo{arg}
+}
+
+// Drive/stop methods defined for structs....
 ```

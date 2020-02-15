@@ -1,29 +1,26 @@
-# Section 2-2
+# Section 2-5
 
-## Strings
+## Structs
 
-* import strings module
+* Declaring a struct
 ```go
-import (
-	"fmt"
-	"strings"
-	)
+type Car struct {
+	Name     string
+	Age      int
+	ModelnNo int
+}
 ```
 
-* Same assignment as `int`
-
-* Reassignment with `=` instead of `:=`
+* Defining an object through a struct
 ```go
-m1 := "my name"
-m1 := "shsh" //error
-m1 = "shsh"  //ok
-m2 := "name"
+c := Car{
+	Name:     "ah",
+	Age:      1,
+	ModelnNo: 2,
+}
 ```
 
-* strings methods
+* Accessing variables of an object
 ```go
-strings.Contains(m1, m2) // m1 cointains m2
-strings.ReplaceAll(m1, "m", "NO")
-strings.Split(m1, " ")
-// else...
+fmt.Println(c.getName()) // ah
 ```

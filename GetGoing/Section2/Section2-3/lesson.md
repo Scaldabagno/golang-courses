@@ -1,29 +1,15 @@
 # Section 2-3
 
-## Strings
+## Arrays
 
-* import strings module
 ```go
-import (
-	"fmt"
-	"strings"
-	)
+// varr arr []int
+arr := []int{1, 2, 3, 4}
 ```
 
-* Same assignment as `int`
-
-* Reassignment with `=` instead of `:=`
+* Appending elements to an array
 ```go
-m1 := "my name"
-m1 := "shsh" //error
-m1 = "shsh"  //ok
-m2 := "name"
-```
-
-* strings methods
-```go
-strings.Contains(m1, m2) // m1 cointains m2
-strings.ReplaceAll(m1, "m", "NO")
-strings.Split(m1, " ")
-// else...
+arr2 := []string{"hi", "my", "name"}
+arr2 = arr2.append(arr2, "is", "angad")
+fmt.Println(arr2) // [hi my name is angad]
 ```
