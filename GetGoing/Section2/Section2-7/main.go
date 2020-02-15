@@ -2,49 +2,20 @@ package main
 
 import "fmt"
 
-type Car interface {
-	Drive()
-	Stop()
-}
-
-type Lambo struct {
-	LamboModel string
-}
-
-type Chevy struct {
-	ChevyModel string
-}
-
-// forces to declare all the methods of the interface to a specific structure
-func newModel(arg string) Car {
-	return &Lambo{arg}
-}
-
-func (l *Lambo) Drive() {
-	fmt.Println("Lambo going...")
-	fmt.Println(l.LamboModel)
-}
-
-func (c *Chevy) Drive() {
-	fmt.Println("Chevy going...")
-	fmt.Println(c.ChevyModel)
-}
-
-func (l *Lambo) Stop() {
-	fmt.Println("Lambo stops...")
-	fmt.Println(l.LamboModel)
-}
-
-func (c *Chevy) Stop() {
-	fmt.Println("Chevy stops...")
-	fmt.Println(c.ChevyModel)
+// Anything prints anything
+func Anything(anything interface{}) {
+	fmt.Println(anything)
 }
 
 func main() {
-	l := Lambo{"Gallardo"}
-	c := Chevy{"C369"}
-	l.Drive()
-	c.Drive()
-	l.Stop()
-	c.Stop()
+	Anything(2.44)       // 2.44
+	Anything("angad")    // angad
+	Anything(struct{}{}) // {}
+
+	mymap := make(map[string]interface{})
+
+	mymap["name"] = "nIUHSHBCI"
+	mymap["age"] = 10
+	fmt.Println(mymap)
+	// map[age:10 name:nIUHSHBCI]
 }

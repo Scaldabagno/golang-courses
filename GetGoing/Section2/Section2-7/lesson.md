@@ -1,29 +1,25 @@
-# Section 2-6
+# Section 2-7
 
 ## Interfaces: Pt. 2
 
-* Declaring an interface
+* Function that takes anything in input
 ```go
-type Car interface {
-	Drive()
-	Stop()
+func Anything(anything interface{}) {
+	fmt.Println(anything)
 }
+
+// Usage
+Anything(2.44)       // 2.44
+Anything("angad")    // angad
+Anything(struct{}{}) // {}
 ```
 
-* Defining some structs and creating a relation between them and an interface
+* Making functions with map (~lambda)
 ```go
-type Lambo struct {
-	LamboModel string
-}
+mymap := make(map[string]interface{})
 
-type Chevy struct {
-	ChevyModel string
-}
-
-// forces to declare all the methods of the interface to a specific structure
-func newModel(arg string) Car {
-	return &Lambo{arg}
-}
-
-// Drive/stop methods defined for structs....
+mymap["name"] = "nIUHSHBCI"
+mymap["age"] = 10
+fmt.Println(mymap)
+// map[age:10 name:nIUHSHBCI]
 ```
