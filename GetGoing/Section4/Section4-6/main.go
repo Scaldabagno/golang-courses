@@ -1,16 +1,25 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"./structs"
 )
 
 func main() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("Request Received")
-		fmt.Println(r.Method) // print method
-		w.Write([]byte("Hello World"))
+	mux.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodGet {
+			data := structs.Response{
+				Code: http.StatusOK,
+				Body: "pong",
+			}
+			json.NewEncoder(w).Encode(data)
+		}
 	})
-	http.ListenAndServe("localhost:3000", mux)
+	address := "localhost:3000"
+	fmt.Println("Server listening on " + address)
+	http.ListenAndServe(address, mux)
 }
