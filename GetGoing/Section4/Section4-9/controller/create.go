@@ -13,7 +13,7 @@ func create() http.HandlerFunc {
 		if r.Method == http.MethodPost {
 			data := views.PostRequest{}
 			json.NewDecoder(r.Body).Decode(&data)
-			if err := model.CreateTodo(data.name, data.Todo); err != nil {
+			if err := model.CreateTodo(data.Name, data.Todo); err != nil {
 				w.Write([]byte("Some Error"))
 				return
 			}
