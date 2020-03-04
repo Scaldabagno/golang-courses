@@ -1,19 +1,24 @@
 package controller
 
 import (
+	"encoding/json"
 	"net/http"
 
-	_ "../model" // vndjisun
+	"../model"
+	"../views"
 )
 
 func create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost {
-			// if error occurs
-			if err := model.createTodo(); err != nil {
+			data := views.PostRequest{}
+			json.NewDecoder(r.Body).Decode(&data)
+			if err := model.CreateTodo(data.name, data.Todo); err != nil {
 				w.Write([]byte("Some Error"))
 				return
 			}
+			w.WriteHeader(http.StatusCreated)
+			json.NewEncoder(w).Encode(data)
 		}
 	}
 }
