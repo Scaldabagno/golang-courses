@@ -1,6 +1,9 @@
 package model
 
-import "../views"
+import (
+	"../views"
+	"log"
+)
 
 func ReadAll() ([]views.PostRequest, error) {
 	rows, err := con.Query("SELECT * FROM TODO")
@@ -17,8 +20,10 @@ func ReadAll() ([]views.PostRequest, error) {
 }
 
 func ReadByName(name string) ([]views.PostRequest, error) {
-	rows, err := con.Query("SELECT * FROM TODO WHERE name=?", name)
+	log.Println("-> ReadByName()")
+	rows, err := con.Query("SELECT * FROM todo WHERE name=?", name)
 	if err != nil {
+		log.Println("Error on ReadByName()")
 		return nil, err
 	}
 	// var todos []views.PostRequest
@@ -28,5 +33,6 @@ func ReadByName(name string) ([]views.PostRequest, error) {
 		rows.Scan(&data.Name, &data.Todo)
 		todos = append(todos, data)
 	}
+	log.Println("<- ReadByName()")
 	return todos, nil
 }

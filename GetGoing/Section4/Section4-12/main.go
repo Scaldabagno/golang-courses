@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql" // mysql driver
@@ -16,6 +17,6 @@ func main() {
 	defer db.Close()
 	fmt.Println("Serving...")
 	address := "localhost:3000"
-	fmt.Println("Server listening on " + address)
+	log.Println("Server listening on " + address)
 	http.ListenAndServe(address, mux)
 }
