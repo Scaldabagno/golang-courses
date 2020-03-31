@@ -1,10 +1,12 @@
 package model
 
 import (
-	"../views"
 	"log"
+
+	"../views"
 )
 
+// ReadAll is the function for a select * query on the db
 func ReadAll() ([]views.PostRequest, error) {
 	rows, err := con.Query("SELECT * FROM TODO")
 	if err != nil {
@@ -19,6 +21,7 @@ func ReadAll() ([]views.PostRequest, error) {
 	return todos, nil
 }
 
+// ReadByName is the function for a select * where query on the db
 func ReadByName(name string) ([]views.PostRequest, error) {
 	log.Println("-> ReadByName()")
 	rows, err := con.Query("SELECT * FROM todo WHERE name=?", name)

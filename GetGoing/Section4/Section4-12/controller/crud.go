@@ -2,6 +2,7 @@ package controller
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"../model"
@@ -13,9 +14,10 @@ func crud() http.HandlerFunc {
 		if r.Method == http.MethodPost {
 			data := views.PostRequest{}
 			json.NewDecoder(r.Body).Decode(&data)
-			if err := model.CreateTodo(data.Name, data.Todo); nil != err {
+			if err := model.CreateTodo(data.Name, data.Todo); err != nil {
 				w.WriteHeader(http.StatusInternalServerError)
 				w.Write([]byte("Some Error"))
+				log.Println("Error on Insert: " + err.Error())
 				return
 			}
 			w.WriteHeader(http.StatusCreated)
@@ -26,7 +28,8 @@ func crud() http.HandlerFunc {
 			data, err := model.ReadByName(name)
 			if err != nil {
 				w.WriteHeader(http.StatusInternalServerError)
-				w.Write([]byte(err.Error()))
+				w.Write([]byte("Some Error"))
+				log.Println("Error on Get: " + err.Error())
 			}
 			//w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(data)
@@ -35,6 +38,7 @@ func crud() http.HandlerFunc {
 			if err := model.DeleteTodo(name); err != nil {
 				w.WriteHeader(http.StatusInternalServerError)
 				w.Write([]byte("Some error"))
+				log.Println("Error on Delete: " + err.Error())
 				return
 			}
 			//w.WriteHeader(http.StatusOK)
