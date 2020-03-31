@@ -8,6 +8,7 @@ import (
 
 // ReadAll is the function for a select * query on the db
 func ReadAll() ([]views.PostRequest, error) {
+	log.Println("-> ReadAll()")
 	rows, err := con.Query("SELECT * FROM TODO")
 	if err != nil {
 		return nil, err
@@ -18,13 +19,14 @@ func ReadAll() ([]views.PostRequest, error) {
 		rows.Scan(&data.Name, &data.Todo)
 		todos = append(todos, data)
 	}
+	log.Println("<- ReadAll()")
 	return todos, nil
 }
 
 // ReadByName is the function for a select * where query on the db
 func ReadByName(name string) ([]views.PostRequest, error) {
 	log.Println("-> ReadByName()")
-	rows, err := con.Query("SELECT * FROM todo WHERE name=?", name)
+	rows, err := con.Query("SELECT * FROM TODO WHERE name=?", name)
 	if err != nil {
 		log.Println("Error on ReadByName()")
 		return nil, err

@@ -11,7 +11,7 @@ var con *sql.DB
 // Connect makes you connect to a db
 func Connect() *sql.DB {
 	log.Println("-> Connect()")
-	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/go-example")
+	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/go_example")
 	err = db.Ping()
 	if err != nil {
 		log.Fatal("Error on Connect(): " + err.Error())

@@ -11,7 +11,7 @@ import (
 func ping() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
-			log.Println("<- ping()")
+			log.Println("-> ping()")
 			data := views.Response{
 				Code: http.StatusOK,
 				Body: "pong",

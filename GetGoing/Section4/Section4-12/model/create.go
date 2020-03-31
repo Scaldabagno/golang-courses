@@ -11,6 +11,7 @@ func CreateTodo(name, todo string) error {
 		log.Println("Error on CreateTodo: " + err.Error())
 		return err
 	}
+	log.Println(name + " inserted with task " + todo)
 	log.Println("<- CreateTodo")
 	return nil
 }
@@ -24,6 +25,7 @@ func DeleteTodo(name string) error {
 		log.Println("Error on DeleteTodo:" + err.Error())
 		return err
 	}
+	log.Println(name + " deleted with his task")
 	log.Println("<- DeleteTodo")
 	return nil
 }
