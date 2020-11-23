@@ -20,8 +20,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Compiling and building'
-                sh 'cd GetGoing/Section4/Todo\ REST\ API'
-                sh 'go build'
+                dir('GetGoing/Section4/Todo\ REST\ API'){
+                  sh "pwd"
+                } 
+                //sh 'go build'
             }
         }
 
