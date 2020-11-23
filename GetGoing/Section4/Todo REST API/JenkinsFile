@@ -5,42 +5,40 @@ pipeline {
     }
     environment {
         GO114MODULE = 'on'
-        CGO_ENABLED = 0 
+        CGO_ENABLED = 0
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
     }
-    stages {        
+    stages {
         stage('Pre Test') {
-            steps {
-                echo 'Installing dependencies'
-                sh 'go version'
-                sh 'go get -u golang.org/x/lint/golint'
-            }
+      steps {
+        echo 'Installing dependencies'
+        sh 'go version'
+        sh 'go get -u golang.org/x/lint/golint'
+      }
         }
-        
+
         stage('Build') {
-            steps {
-                echo 'Compiling and building'
-                dir('GetGoing/Section4/Todo REST API'){
-                  sh "pwd"
-                } 
-                //sh 'go build'
-            }
+      steps {
+        echo 'Compiling and building'
+        dir('GetGoing/Section4/Todo REST API') {
+          sh 'go build'
+        }
+      }
         }
 
         stage('Test') {
-            steps {
-                withEnv(["PATH+GO=${GOPATH}/bin"]){
-                    echo 'Running vetting'
-                    sh 'cd GetGoing/Section4/Todo\ REST\ API'
-                    sh 'go vet .'
-                    echo 'Running linting'
-                    sh 'golint .'
-                    echo 'Running test'
-                    //sh 'cd test && go test -v'
-                }
-            }
+      steps {
+        withEnv(["PATH+GO=${GOPATH}/bin"]) {
+          echo 'Running vetting'
+          dir('GetGoing/Section4/Todo REST API') {
+            sh 'go vet .'
+            echo 'Running linting'
+            sh 'golint .'
+            echo 'Running test'
+          }
         }
-        
+      }
+        }
     }
     post {
         always {
@@ -48,8 +46,7 @@ pipeline {
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 to: "${params.RECIPIENTS}",
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"*/
-                echo 'yay'
-            
+      echo 'yay'
         }
-    }  
+    }
 }
