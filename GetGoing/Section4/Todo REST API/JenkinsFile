@@ -13,7 +13,9 @@ pipeline {
       steps {
         echo 'Installing dependencies'
         sh 'go version'
-        sh 'go get -u golang.org/x/lint/golint "github.com/go-sql-driver/mysql"'
+        dir('GetGoing/Section4/Todo REST API'){
+          sh 'go get -u golang.org/x/lint/golint "github.com/go-sql-driver/mysql"'
+        }
       }
         }
 
