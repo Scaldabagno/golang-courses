@@ -21,7 +21,7 @@ pipeline {
       steps {
         echo 'Compiling and building'
         dir('GetGoing/Section4/Todo REST API') {
-          sh 'go build .'
+          sh 'go build main.go'
         }
       }
         }
